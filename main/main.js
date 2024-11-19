@@ -1,0 +1,47 @@
+import { app, BrowserWindow } from 'electron';
+//import { ChildProcess } from 'node:child_process';
+//import serve from 'electron-serve';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { exec } from 'node:child_process';
+import find from 'find-process';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const createWindow = () => {
+    const win = new BrowserWindow({
+        width: 1900,
+        height: 1000,
+        webPreferences: {
+            webviewTag: true
+        }
+    });
+
+    //console.log(process.cwd());
+    exec('npm run start');
+
+    win.loadURL('http://localhost:3000');
+    let portOpen = true;
+    win.on('close', (e) => {
+        if (portOpen) {
+            e.preventDefault();
+            find('port', 3000).then((list) => {
+                console.log(list[0].pid);
+                process.kill(list[0].pid);
+            });
+            portOpen = false;
+        }
+    });
+}
+
+app.whenReady().then(() => {
+    createWindow();
+
+    app.on('activate', () => {
+        if (BrowserWindow.getAllWindows().length === 0) createWindow();
+    })
+});
+
+app.on('window-all-closed', () => {
+    app.quit();
+});

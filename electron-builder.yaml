@@ -1,0 +1,9 @@
+appId: "nokia.testing.app"
+productName: "Nokia Testing App"
+copyright: "Copyright (c) 2024 Michael Comatas"
+win:
+  target: ["dir", "portable", "zip"]
+linux:
+  target: ["dir", "appimage", "zip"]
+mac:
+  target: ["dir", "dmg", "zip"]
