@@ -17,8 +17,10 @@ const createWindow = () => {
         }
     });
 
-    //console.log(process.cwd());
-    exec('npm run start');
+    // For dev testing
+    exec('npm run next:dev');
+    // For finished build
+    //exec('npm run start');
 
     win.loadURL('http://localhost:3000');
     let portOpen = true;

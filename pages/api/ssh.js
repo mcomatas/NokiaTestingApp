@@ -29,21 +29,23 @@ export default async function sshHandler(req, res) {
 
         const conn = new Client();
         conn.on('ready', () => {
-            console.log('Client ready');
-
+            //console.log('Client ready');
+            
             conn.shell((err, stream) => {
                 if (err) throw err;
-
                 stream.on('close', () => {
                     conn.end();
                     socket.disconnect();
                     //server.close();
                     console.log('SSH connection closed');
                 });
-
                 socket.on('message', (msg) => stream.write(msg));
                 stream.on('data', (data) => socket.emit('message', data.toString()));
             })
+        }).on('error', () => {
+            socket.emit('message', 'Trouble connecting to NE. Please check IP and try again.');
+            conn.end();
+            socket.disconnect();
         }).connect({
             hostname: socket.handshake.query.host,
             username: 'cli'
