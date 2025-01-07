@@ -4,13 +4,13 @@ import { FitAddon } from '@xterm/addon-fit';
 import '../node_modules/@xterm/xterm/css/xterm.css';
 import handleData from '../lib/handleData';
 
-const XTerminal = ({prompt}) => {
+const XTerminal = ({prompt, termHeight}) => {
     const terminalRef = useRef(null);
     const [term, setTerm] = useState(null);
 
     useEffect(() => {
         const terminal = new Terminal({
-            cursorBlink: true
+            cursorBlink: true,
         });
         setTerm(terminal);
         return () => {
@@ -34,7 +34,7 @@ const XTerminal = ({prompt}) => {
         }
     }, [term]);
 
-    return <div ref={terminalRef} />
+    return <div ref={terminalRef} style={{ height: termHeight }}/>
 }
 
 export default XTerminal;
