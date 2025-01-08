@@ -90,7 +90,7 @@ export default function Page() {
             
             <SimpleGrid columns={vertical ? 1 : 2}>
                 {/*CLI Grid*/}
-                <SimpleGrid columns={vertical ? 2 : 1} spacing={5} padding={4} gridRow="span 2">
+                <SimpleGrid columns={vertical ? 2 : 1} spacing={5} padding={4} gridRow={terms.length >= ips.length ? "span 2" : "span 1"}>
                     {terms.map((term) => (
                         <Box key={term.id}>
                             <Box display="flex" justifyContent="flex-end"><CloseButton onClick={() => removeTerminal(term.id)} /></Box>
@@ -100,7 +100,7 @@ export default function Page() {
                 </SimpleGrid>
 
                 {/*WebUI Grid*/}
-                <SimpleGrid columns={vertical ? 2 : 1} spacing={5} padding={4}>
+                <SimpleGrid columns={vertical ? 2 : 1} spacing={5} padding={4} gridRow={ips.length > terms.length ? "span 2" : "span 1"}>
                     {ips.map((ip) => (
                         <Box key={ip.id}>
                             <Box display="flex" justifyContent="flex-end"><CloseButton onClick={() => removeWebUI(ip.id)} value={ip.id} /></Box>
