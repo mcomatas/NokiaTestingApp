@@ -13,7 +13,9 @@ import {
     InputRightElement,
     Switch,
     FormControl,
-    FormLabel
+    FormLabel,
+    Image,
+    Divider
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
@@ -61,7 +63,8 @@ export default function Page() {
     
     return (
         <Box>
-            <Text fontSize={38} padding={1}>Nokia Testing App</Text>
+            {/*<Text fontSize={38} padding={1}>Nokia Testing App</Text>*/}
+            <Image src="NokiaLogo.png" alt="Nokia Logo" width={300} />
             <SimpleGrid columns={2} display="flex" justifyContent="center">
                 <Box padding={3} width={400}>
                     <Stack spacing={3}>

@@ -14,7 +14,9 @@ const createWindow = () => {
         height: 1000,
         webPreferences: {
             webviewTag: true
-        }
+        },
+        title: "Nokia Testing App",
+        icon: 'C:/Users/comatas/Desktop/Code/NokiaTestingApp/public/NokiaIcon.png'
     });
 
     // For dev testing
