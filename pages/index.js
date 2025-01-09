@@ -84,7 +84,7 @@ export default function Page() {
                 <Box padding={3}>
                     <FormControl display='flex' alignItems='center'>
                         <FormLabel htmlFor='grid-layout' mb='0'>
-                            Column Direction: {vertical ? "Horizontal" : "Vertical"}
+                            Grid Direction: {vertical ? "Horizontal" : "Vertical"}
                         </FormLabel>
                         <Switch onChange={handleToggle} size='lg' />
                     </FormControl>
